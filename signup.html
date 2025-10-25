@@ -1,45 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Signup | CSE SPARTANS</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="auth.js"></script>
+  
 </head>
 <body>
-  <!-- NAVBAR (copy the same block here) -->
-  <nav class="site-nav">
-    <div class="nav-container">
-      <a href="index.html" class="brand">CSE SPARTANS</a>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="index.html#booking">Book Now</a>
-        <a href="signup.html">Signup</a>
-        <a href="login.html">Login</a>
-        <a href="index.html#contact">Contact</a>
+  <canvas id="matrix-canvas"></canvas>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand"><div class="logo">CSE<span>SPARTANS</span></div></div>
+      <nav class="nav"><a href="index.html">Home</a></nav>
+    </header>
+
+    <main style="display:grid;place-items:center;min-height:70vh;padding:24px;">
+      <div class="form-card" style="max-width:520px;">
+        <h2 style="grid-column:1/-1;color:var(--neon-2)">Create an account</h2>
+
+        <form onsubmit="return window.signup(this)">
+          <div class="form-row">
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" required placeholder="Your full name" />
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="name@domain.com" />
+          </div>
+          <div class="form-row">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" required placeholder="Min 6 chars" />
+          </div>
+
+          <div class="form-row actions-row" style="grid-column:1/-1">
+            <button class="btn neon" type="submit">Create Account</button>
+            <a class="btn btn-ghost" href="login.html">Already have an account?</a>
+          </div>
+
+          <div style="grid-column:1/-1;margin-top:8px">
+            <div class="info muted" style="color:var(--muted)"></div>
+          </div>
+        </form>
       </div>
-    </div>
-  </nav>
+    </main>
 
-  <main style="padding:30px 16px;">
-    <div class="container" style="max-width:420px; margin:auto;">
-      <h2>Create Account</h2>
+    <footer class="footer"><small>© <span id="year3"></span> CSE SPARTANS</small></footer>
+  </div>
 
-      <form id="signupForm">
-        <input type="text" id="name" placeholder="Full name" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <input type="password" id="password" placeholder="Password (min 6)" minlength="6" required>
-        <input type="password" id="confirm" placeholder="Confirm password" minlength="6" required>
-        <button type="submit">Sign Up</button>
-      </form>
+<script>
+  document.getElementById('year3').textContent = new Date().getFullYear();if (typeof initMatrix === "function") {
+    initMatrix('matrix-canvas');
 
-      <p id="signupMsg" style="margin-top:12px;color: #fff;"></p>
-      <p style="color:rgba(255,255,255,0.8);margin-top:12px;">
-        Already have account? <a href="login.html" style="color:#00b4d8;">Login</a>
-      </p>
-    </div>
-  </main>
-  
-  <script src="auth.js"></script>
+  }
+</script>
+  <script>
+  document.getElementById('year3').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
