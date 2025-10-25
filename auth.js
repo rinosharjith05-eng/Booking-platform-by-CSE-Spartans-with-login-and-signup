@@ -1,79 +1,64 @@
-// ---------- AUTH SCRIPT (CSE Spartans) ----------
-// This version works perfectly on both local preview and GitHub Pages
+/* Lightweight client-side auth helpers
+   - This file intentionally contains only client-side logic and placeholders.
+   - Replace fetch URLs with your server endpoints when integrating.
+*/
+(function(){
+  // Simple email regex for client validation
+  const emailRE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-document.addEventListener("DOMContentLoaded", () => {
-  const signupForm = document.getElementById("signupForm");
-  const loginForm = document.getElementById("loginForm");
+  window.validateSignup = function({name, email, password}){
+    if(!name || !email || !password) return {ok:false, msg:'All fields required.'};
+    if(!emailRE.test(email)) return {ok:false, msg:'Invalid email.'};
+    if(password.length < 6) return {ok:false, msg:'Password too short.'};
+    return {ok:true};
+  };
 
-  // Utility to show messages
-  function showMsg(id, text, color = "#fff") {
-    const el = document.getElementById(id);
-    if (el) {
-      el.textContent = text;
-      el.style.color = color;
+  window.signup = async function(formEl){
+    const name = formEl.name.value.trim();
+    const email = formEl.email.value.trim();
+    const password = formEl.password.value;
+
+    const v = validateSignup({name,email,password});
+    const info = formEl.querySelector('.info');
+    if(!v.ok){ info.textContent = v.msg; return false; }
+
+    info.textContent = 'Creating account...';
+    console.log("auth.js is loaded!");
+    try{
+      // Placeholder: replace URL with your backend signup endpoint
+      // const res = await fetch('/api/signup', {method:'POST', body:JSON.stringify({name,email,password}), headers:{'content-type':'application/json'}});
+      // const data = await res.json();
+      // simulate
+      await new Promise(r=>setTimeout(r,800));
+      info.textContent = '✅ Account created. Redirecting to login...';
+      setTimeout(()=>location.href = 'login.html', 900);
+    }catch(err){
+      info.textContent = 'Signup failed. Try again later.';
     }
-  }
+    return false;
+  };
 
-  // ----------------- SIGNUP -----------------
-  if (signupForm) {
-    signupForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim().toLowerCase();
-      const password = document.getElementById("password").value;
-      const confirm = document.getElementById("confirm").value;
+  window.login = async function(formEl){
+    const email = formEl.email.value.trim();
+    const password = formEl.password.value;
+    const info = formEl.querySelector('.info');
 
-      if (password !== confirm) {
-        showMsg("signupMsg", "Passwords do not match", "salmon");
-        return;
-      }
-      if (password.length < 6) {
-        showMsg("signupMsg", "Password must be at least 6 characters", "salmon");
-        return;
-      }
+    if(!emailRE.test(email)){ info.textContent = 'Enter a valid email.'; return false; }
+    if(!password){ info.textContent = 'Enter your password.'; return false; }
 
-      // Load or create user list
-      let users = JSON.parse(localStorage.getItem("users") || "[]");
+    info.textContent = 'Signing in...';
+    try{
+      // Placeholder: replace with your backend auth call
+      // const res = await fetch('/api/login', {method:'POST', body:JSON.stringify({email,password}), headers:{'content-type':'application/json'}});
+      // const data = await res.json();
+      await new Promise(r=>setTimeout(r,700));
+      info.textContent = '✅ Logged in. Redirecting...';
+      // on success, redirect
+      setTimeout(()=>location.href = 'index.html', 700);
+    }catch(err){
+      info.textContent = 'Login failed. Check credentials.';
+    }
+    return false;
+  };
 
-      // Check existing
-      if (users.find((u) => u.email === email)) {
-        showMsg("signupMsg", "Email already registered. Please login.", "salmon");
-        return;
-      }
-
-      // Add new user
-      users.push({ name, email, password });
-      localStorage.setItem("users", JSON.stringify(users));
-
-      showMsg("signupMsg", "Signup successful! Redirecting to login...", "#90EE90");
-      setTimeout(() => {
-        window.location.href = "./login.html"; // redirect
-      }, 1200);
-    });
-  }
-
-  // ----------------- LOGIN -----------------
-  if (loginForm) {
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const email = document.getElementById("loginEmail").value.trim().toLowerCase();
-      const password = document.getElementById("loginPassword").value;
-
-      const users = JSON.parse(localStorage.getItem("users") || "[]");
-      const user = users.find((u) => u.email === email && u.password === password);
-
-      if (!user) {
-        showMsg("loginMsg", "Invalid email or password", "salmon");
-        return;
-      }
-
-      // Save current user
-      localStorage.setItem("currentUser", JSON.stringify({ name: user.name, email: user.email }));
-
-      showMsg("loginMsg", "Login successful! Redirecting...", "#90EE90");
-      setTimeout(() => {
-        window.location.href = "./index.html"; // redirect
-      }, 1200);
-    });
-  }
-});
+})();
