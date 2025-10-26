@@ -3,13 +3,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
   // year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Demo fill
-  window.fillDemo = function(){
-    document.getElementById('name').value = 'Rino Sharjith';
-    document.getElementById('email').value = 'rino@example.com';
-    document.getElementById('college').value = 'Your College Name';
-    document.getElementById('whatsapp').value = '+919999999999';
-  };
+
 
   // Terminal flicker/demo
   const term = document.getElementById('terminal');
@@ -19,11 +13,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     '> events: fetched (3 entries)',
     '> tip: press Book Now to reserve',
   ];
-  let idx=0;
-  setInterval(()=>{
-    term.textContent = lines.slice(0, (idx%lines.length)+1).join('\n');
-    idx++;
-  }, 2000);
+  
 
   // Matrix animation init
   initMatrix('matrix-canvas');
