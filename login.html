@@ -1,46 +1,61 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Login | CodeSapiens</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="auth.js"></script>
-</head>
-<body>
-  <canvas id="matrix-canvas"></canvas>
-  <div class="app">
-    <header class="topbar">
-      <div class="brand"><div class="logo">CSE<span>SPARTANS</span></div></div>
-      <nav class="nav"><a href="index.html">Home</a></nav>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Login | CSE SPARTANS</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="auth.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="logo">CSE SPARTANS</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="signup.html">Signup</a>
+        <a href="login.html" class="active">Login</a>
+      </nav>
     </header>
 
-    <main style="display:grid;place-items:center;min-height:70vh;padding:24px;">
-      <div class="form-card" style="max-width:420px;">
-        <h2 style="grid-column:1/-1;color:var(--neon-2)">Login to your account</h2>
-        <form onsubmit="return window.login(this)">
-          <div class="form-row">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required placeholder="name@domain.com" />
-          </div>
-          <div class="form-row">
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" required placeholder="••••••••" />
-          </div>
-          <div class="form-row actions-row" style="grid-column:1/-1">
-            <button class="btn neon" type="submit">Sign In</button>
-            <a class="btn btn-ghost" href="signup.html">Create Account</a>
-          </div>
-          <div class="form-row" style="grid-column:1/-1;margin-top:6px">
-            <div class="info muted" style="color:var(--muted)"></div>
-          </div>
-        </form>
-      </div>
-    </main>
+    <div class="app">
+      <h2>Login to Your Account</h2>
 
-    <footer class="footer"><small>© <span id="year2"></span> CSE SPARTANS</small></footer>
-  </div>
+      <form id="loginForm" onsubmit="return handleLogin(event)" class="form-card">
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="Enter your registered email" />
+        </div>
 
-  <script>document.getElementById('year2').textContent = new Date().getFullYear(); </script>
-</body>
+        <div class="form-row">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required placeholder="Enter your password" />
+        </div>
+
+        <!-- Demo CAPTCHA -->
+        <div class="form-row checkbox-row">
+          <label><input type="checkbox" id="login-captcha" /> I'm not a robot</label>
+        </div>
+
+        <div class="form-row actions-row">
+          <button class="btn" type="submit">Login</button>
+          <a href="signup.html" class="btn btn-ghost">Signup</a>
+        </div>
+
+        <p class="muted" style="text-align:center;">
+          <a href="forgot.html">Forgot Password?</a>
+        </p>
+
+        <div id="loginMsg" class="form-msg"></div>
+      </form>
+    </div>
+
+    <footer class="footer">
+      <small>© <span id="year3"></span> CSE SPARTANS</small>
+    </footer>
+
+    <script>
+      document.getElementById("year3").textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>
