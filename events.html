@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Events | CSE SPARTANS</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="auth.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="logo">CSE SPARTANS</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="events.html" class="active">Events</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    <div class="app">
+      <h2>Upcoming Events</h2>
+
+      <!-- Filter Section -->
+      <div class="filter-card">
+        <label>
+          Category:
+          <select id="categoryFilter">
+            <option value="all">All</option>
+            <option value="tech">Tech</option>
+            <option value="workshop">Workshop</option>
+            <option value="fun">Fun</option>
+          </select>
+        </label>
+
+        <label>
+          Date:
+          <input type="date" id="dateFilter" />
+        </label>
+
+        <button class="btn" onclick="applyFilters()">Filter</button>
+      </div>
+
+      <!-- Event List -->
+      <div id="eventList" class="event-list"></div>
+    </div>
+
+    <footer class="footer">
+      <small>© <span id="year6"></span> CSE SPARTANS</small>
+    </footer>
+
+    <script>
+      document.getElementById("year6").textContent = new Date().getFullYear();
+
+      const events = [
+        {
+          title: "Tech Symposium 2025",
+          date: "2025-11-15",
+          location: "Loyola Institute of Technology",
+          category: "tech",
+        },
+        {
+          title: "AI & ML Workshop",
+          date: "2025-12-05",
+          location: "Seminar Hall A",
+          category: "workshop",
+        },
+        {
+          title: "Coding Marathon",
+          date: "2025-12-20",
+          location: "Lab 3 - CSE Block",
+          category: "tech",
+        },
+        {
+          title: "Fun Fiesta 2025",
+          date: "2025-11-30",
+          location: "Open Ground",
+          category: "fun",
+        },
+      ];
+
+      function renderEvents(filtered = events) {
+        const list = document.getElementById("eventList");
+        list.innerHTML = "";
+
+        if (filtered.length === 0) {
+          list.innerHTML = "<p class='muted'>No events found for the selected filter.</p>";
+          return;
+        }
+
+        filtered.forEach((e) => {
+          const card = document.createElement("div");
+          card.className = "event-card";
+          card.innerHTML = `
+            <h3>${e.title}</h3>
+            <p><strong>Date:</strong> ${e.date}</p>
+            <p><strong>Location:</strong> ${e.location}</p>
+            <button class="btn" onclick="bookEvent('${e.title}','${e.date}','${e.location}')">Book Now</button>
+          `;
+          list.appendChild(card);
+        });
+      }
+
+      function bookEvent(title, date, loc) {
+        window.location.href = `event-booking.html?title=${encodeURIComponent(title)}&date=${encodeURIComponent(date)}&loc=${encodeURIComponent(loc)}`;
+      }
+
+      function applyFilters() {
+        const cat = document.getElementById("categoryFilter").value;
+        const date = document.getElementById("dateFilter").value;
+
+        const filtered = events.filter((e) => {
+          const matchCat = cat === "all" || e.category === cat;
+          const matchDate = !date || e.date === date;
+          return matchCat && matchDate;
+        });
+
+        renderEvents(filtered);
+      }
+
+      // Initial render
+      renderEvents();
+    </script>
+  </body>
+</html>
