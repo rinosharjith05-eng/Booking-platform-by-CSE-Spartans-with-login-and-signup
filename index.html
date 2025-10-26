@@ -1,125 +1,101 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Web development Booking Platform | CSE Spartans</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
-
-</head>
-<body>
-  <!-- Matrix Canvas (background effect) -->
-  <canvas id="matrix-canvas"></canvas>
-
-  <!-- Main App Container -->
-  <div class="app">
-    <header class="topbar">
-      <div class="brand">
-        <div class="logo">CSE<span>SPARTANS</span></div>
-        <div class="sub">Web development Booking Platform</div>
-      </div>
-      <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="#booking">Book Now</a>
-        <a href="signup.html">Signup</a>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CSE SPARTANS | Events</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body >
+    <!-- Header -->
+    <header class="main-header">
+      <div class="logo">CSE SPARTANS</div>
+      <nav class="navbar">
+        <a href="index.html" class="active">Home</a>
+        <a href="events.html">Events</a>
         <a href="login.html">Login</a>
-        <a href="#contact">Contact</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </header>
 
-    <main class="main">
-      <section class="hero">
-        <div class="hero-left">
-          <h1>Secure your slot — fast.</h1>
-          <p class="muted">Workshops • Tech Talks • Hands-on Labs — limited seats.</p>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Secure your slot — fast.</h1>
+        <p class="muted">Workshops • Tech Talks • Hackathon — limited seats.</p>
 
-          <div class="stats">
-            <div><strong id="slots-left">120</strong><small>slots left</small></div>
-            <div><strong>3</strong><small>upcoming events</small></div>
-            <div><strong>500+</strong><small>registrations</small></div>
-          </div>
-
-          <div class="actions">
-            <a class="btn btn-ghost" href="#booking">Book Now</a>
-            <a class="btn" href="signup.html">Create Account</a>
-          </div>
+        <div class="stats">
+          <div><strong id="slots-left">120</strong><small>slots left</small></div>
+          <div><strong id="event-count">3</strong><small>upcoming events</small></div>
         </div>
 
-        <div class="hero-right">
-          <div class="terminal-card">
-            <div class="term-header">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-              <div class="term-title">booking@csespartans:~</div>
-            </div>
-
-            <div class="term-body" id="terminal">
-              <pre>// Welcome to the Web development booking console
-> load events --status upcoming
-> run book --fast
-</pre>
-            </div>
-          </div>
+        <div class="actions">
+          <a class="btn btn-ghost" href="events.html">View Events</a>
+          
+          <a class="btn" href="#booking">Book Now</a>
+          
         </div>
-      </section>
+      </div class="actions">
+      </div>
+      </div>
+    </section>
 
-      <section id="booking" class="booking">
-        <h2>Booking Form</h2>
-        <p class="muted">(All fields preserved from your original — keep them exactly as needed.)</p>
+    <!-- Event Listing -->
+    <section id="events-list" class="events-section">
+      <h2> Events</h2>
+      <h4>
+- Workshop on AI & ML | Date: 05/11/2025 | Time: 08:00 am</h4>
+<h4>- Tech Talk on Cybersecurity | Date: 07/11/2025 | Time: 10:30 am</h4>
+<h4>- Hackathon: Code Sprint | Date: 09/11/2025 | Time: 10:00 am
+</h4>
 
-        <form id="bookingForm" class="form-card" onsubmit="return handleBookingSubmit(event)">
-          <!-- Keep your exact content here — these are standard placeholders -->
-          <div class="form-row">
-            <label for="name">Your Name</label>
-            <input id="name" name="name" type="text" required placeholder="Enter your name" />
-          </div>
 
-          <div class="form-row">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required placeholder="Enter your email" />
-          </div>
+      <div id="event-cards" class="event-cards"></div>
+    </section>
 
-          <div class="form-row">
-            <label for="college">College Name</label>
-            <input id="college" name="college" type="text" required placeholder="Enter your college name" />
-          </div>
+    <!-- Booking Form -->
+    <section id="booking" class="booking">
+      <h2>Book Your Slot</h2>
+      <p id="event-context" class="muted">Select an event above to book your slot.</p>
 
-          <div class="form-row">
-            <label for="whatsapp">WhatsApp Number</label>
-            <input id="whatsapp" name="whatsapp" type="tel" required placeholder="Enter your WhatsApp number" />
-          </div>
+      <form id="bookingForm" onsubmit="return handleBookingSubmit(event)" class="form-card">
+        <div class="form-row">
+          <label for="name">Your Name</label>
+          <input id="name" name="name" required placeholder="Enter your name" />
+        </div>
 
-          <div class="form-row actions-row">
-            <button type="submit" class="btn neon">Book My Slot</button>
-            <button type="button" class="btn btn-ghost" onclick="fillDemo()">Demo Fill</button>
-          </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="Enter your email" />
+        </div>
 
-          <div id="formMsg" class="form-msg" aria-live="polite"></div>
-        </form>
-      </section>
+        <div class="form-row">
+          <label for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" required placeholder="10-digit phone number" />
+        </div>
 
-      <section id="contact" class="contact">
-        <h3>Contact & Info</h3>
-        <p class="muted">Keep your existing contact text in place. This area is styled to match the hacker aesthetic.</p>
-        <ul class="contact-list">
-          <li>Organizer: CSE SPARTANS</li>
-          <li>Insta:@arceus_the_fire
-          </li>
-          <li>Email: arceusthefire@gmail.com</li>
-          <li>Phone/WhatsApp: +91-9361949941</li>
-        </ul>
-      </section>
-    </main>
+        <!-- Demo CAPTCHA -->
+          <label class="custom-checkbox">
+            <input type="checkbox" />
+            <span></span> I'm not a robot
+          </label>
 
+        <div class="form-row actions-row">
+          <button type="submit" class="btn neon">Book My Slot</button>
+        </div>
+
+        <div id="formMsg" class="form-msg" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
-      <small>© <span id="year"></span> CSE Spartans| Be classy</small>
-      <div class="credits">  Built with ⚡ hacker-theme</div>
+      <small>© <span id="year"></span> CSE SPARTANS</small>
     </footer>
-  </div>
 
-  <!-- Auth helper (client side) -->
-  <script defer src="auth.js"></script>
-</body>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>
