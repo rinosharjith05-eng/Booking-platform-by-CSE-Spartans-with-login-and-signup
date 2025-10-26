@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Event Booking | CSE SPARTANS</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="auth.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="logo">CSE SPARTANS</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="events.html" class="active">Events</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    <div class="app">
+      <h2>Book Your Event</h2>
+
+      <!-- Event details section -->
+      <div id="eventInfo" class="event-info-card">
+        <h3 id="eventTitle">Event Title</h3>
+        <p><strong>Date:</strong> <span id="eventDate">--</span></p>
+        <p><strong>Location:</strong> <span id="eventLocation">--</span></p>
+      </div>
+
+      <form id="bookingForm" onsubmit="return handleBooking(event)" class="form-card">
+        <div class="form-row">
+          <label for="name">Full Name</label>
+          <input id="name" name="name" required placeholder="Enter your name" />
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="Enter your email" />
+        </div>
+
+        <div class="form-row">
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" required placeholder="10-digit phone number" />
+        </div>
+
+        <div class="form-row">
+          <label for="tickets">Tickets</label>
+          <input id="tickets" name="tickets" type="number" min="1" max="10" required />
+        </div>
+
+        <!-- Demo CAPTCHA -->
+        <div class="form-row checkbox-row">
+          <label><input type="checkbox" id="book-captcha" /> I'm not a robot</label>
+        </div>
+
+        <div class="form-row actions-row">
+          <button class="btn" type="submit">Confirm Booking</button>
+        </div>
+
+        <div id="bookMsg" class="form-msg"></div>
+      </form>
+    </div>
+
+    <footer class="footer">
+      <small>© <span id="year5"></span> CSE SPARTANS</small>
+    </footer>
+
+    <script>
+      document.getElementById("year5").textContent = new Date().getFullYear();
+
+      // Display event details (for demo)
+      const urlParams = new URLSearchParams(window.location.search);
+      document.getElementById("eventTitle").textContent = urlParams.get("title") || "Technical Symposium";
+      document.getElementById("eventDate").textContent = urlParams.get("date") || "Nov 15, 2025";
+      document.getElementById("eventLocation").textContent = urlParams.get("loc") || "Loyola Institute of Technology";
+
+      // Booking form validation
+      function handleBooking(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const tickets = document.getElementById("tickets").value.trim();
+        const captcha = document.getElementById("book-captcha").checked;
+        const msg = document.getElementById("bookMsg");
+
+        // Basic validations
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          msg.textContent = "Please enter a valid email address.";
+          msg.style.color = "red";
+          return false;
+        }
+
+        if (!/^\d{10}$/.test(phone)) {
+          msg.textContent = "Please enter a valid 10-digit phone number.";
+          msg.style.color = "red";
+          return false;
+        }
+
+        if (!captcha) {
+          msg.textContent = "Please verify that you are not a robot.";
+          msg.style.color = "red";
+          return false;
+        }
+
+        msg.textContent = `✅ Booking confirmed for ${name}!`;
+        msg.style.color = "green";
+
+        // Redirect after success
+        setTimeout(() => (window.location.href = "index.html"), 2000);
+        return true;
+      }
+    </script>
+  </body>
+</html>
