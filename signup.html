@@ -1,62 +1,69 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Signup | CSE SPARTANS</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="auth.js"></script>
-  
-</head>
-<body>
-  <canvas id="matrix-canvas"></canvas>
-  <div class="app">
-    <header class="topbar">
-      <div class="brand"><div class="logo">CSE<span>SPARTANS</span></div></div>
-      <nav class="nav"><a href="index.html">Home</a></nav>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Signup | CSE SPARTANS</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="auth.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="logo">CSE SPARTANS</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="signup.html" class="active">Signup</a>
+        <a href="login.html">Login</a>
+      </nav>
     </header>
 
-    <main style="display:grid;place-items:center;min-height:70vh;padding:24px;">
-      <div class="form-card" style="max-width:520px;">
-        <h2 style="grid-column:1/-1;color:var(--neon-2)">Create an account</h2>
+    <div class="app">
+      <h2>Create Account</h2>
 
-        <form onsubmit="return window.signup(this)">
-          <div class="form-row">
-            <label for="name">Full name</label>
-            <input id="name" name="name" type="text" required placeholder="Your full name" />
-          </div>
-          <div class="form-row">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required placeholder="name@domain.com" />
-          </div>
-          <div class="form-row">
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" required placeholder="Min 6 chars" />
-          </div>
+      <form id="signupForm" onsubmit="return handleSignup(event)" class="form-card">
+        <div class="form-row">
+          <label for="name">Full Name</label>
+          <input id="name" name="name" required placeholder="Enter your name" />
+        </div>
 
-          <div class="form-row actions-row" style="grid-column:1/-1">
-            <button class="btn neon" type="submit">Create Account</button>
-            <a class="btn btn-ghost" href="login.html">Already have an account?</a>
-          </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required placeholder="Enter your email" />
+        </div>
 
-          <div style="grid-column:1/-1;margin-top:8px">
-            <div class="info muted" style="color:var(--muted)"></div>
-          </div>
-        </form>
-      </div>
-    </main>
+        <div class="form-row">
+          <label for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" required placeholder="10-digit phone number" />
+        </div>
 
-    <footer class="footer"><small>© <span id="year3"></span> CSE SPARTANS</small></footer>
-  </div>
 
-<script>
-  document.getElementById('year3').textContent = new Date().getFullYear();if (typeof initMatrix === "function") {
-    initMatrix('matrix-canvas');
+        <div class="form-row">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required placeholder="Create a strong password" />
+          <small class="muted">Must include upper, lower, number, special character, 8+ chars</small>
+        </div>
 
-  }
-</script>
-  <script>
-  document.getElementById('year3').textContent = new Date().getFullYear();
-</script>
-</body>
+        <!-- Demo CAPTCHA -->
+        <div class="form-row checkbox-row">
+          <label><input type="checkbox" id="signup-captcha" /> I'm not a robot</label>
+        </div>
+
+        <div class="form-row actions-row">
+          <button class="btn" type="submit">Create Account</button>
+          <a href="login.html" class="btn btn-ghost">Already have an account?</a>
+        </div>
+
+        <div id="signupMsg" class="form-msg"></div>
+      </form>
+    </div>
+
+    <footer class="footer">
+      <small>© <span id="year2"></span> CSE SPARTANS</small>
+    </footer>
+
+    <script>
+      document.getElementById("year2").textContent = new Date().getFullYear();
+    </script>
+  </body>
 </html>
