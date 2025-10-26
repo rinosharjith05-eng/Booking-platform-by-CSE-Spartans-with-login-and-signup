@@ -51,6 +51,10 @@ body{
 .brand .logo span{color:var(--neon-2);margin-left:6px}
 .brand .sub{font-size:11px;color:var(--muted);margin-top:2px}
 
+.navbar{
+  display: flex;
+  padding: 10px;
+}
 .nav a{
   color:var(--neon);
   text-decoration:none;
@@ -81,6 +85,18 @@ body{
 .stats strong{display:block;font-size:18px;color:var(--neon)}
 .stats small{color:var(--muted);font-size:11px}
 
+/*booking form*/
+#booking {
+  width: 80%;          /* Make it smaller than full width */
+  max-width: 600px;    /* Limit the maximum width */
+  margin: 0 auto;      /* Center the section horizontally */
+  padding: 30px;       /* Optional: add some inner space */
+  box-sizing: border-box; /* Ensure padding doesn’t increase width */
+  border: 1px solid #ccc; /* Optional: for visual boundary */
+  border-radius: 8px;     /* Optional: rounded corners */
+}
+
+
 .actions{display:flex;gap:12px;margin-top:12px}
 .btn{
   padding:10px 14px;border-radius:10px;background:linear-gradient(180deg, rgba(0,255,138,0.06), rgba(0,255,138,0.02));
@@ -88,6 +104,130 @@ body{
 }
 .btn:hover{box-shadow:0 6px 20px rgba(0,255,138,0.06);transform:translateY(-2px)}
 .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)}
+
+.custom-checkbox {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  padding-left: 25px;
+  user-select: none;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.custom-checkbox span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #222;
+  border: 2px solid var(--neon);
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.custom-checkbox input:checked+span {
+  background-color: var(--neon);
+  box-shadow: 0 0 5px var(--neon);
+}
+
+/* Filters */
+.filter-card {
+  background-color: #000; /* Dark background */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.filter-card label {
+  color: #0f0; /* Green text for labels */
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filter-card select,
+.filter-card input[type="date"] {
+  background-color: #333; /* Slightly lighter dark for inputs */
+  color: #fff; /* White text in inputs */
+  border: 1px solid #0f0; /* Green border */
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.filter-card button.btn {
+  background-color: #0f0; /* Green background for button */
+  color: #000; /* Black text on green button */
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.filter-card button.btn:hover {
+  background-color: #0c0; /* Slightly darker green on hover */
+}
+
+/* CONTACT PAGE */
+.contact-section {
+  min-height: 80vh;
+  padding: 50px 10%;
+  text-align: center;
+  color: var(--muted);
+}
+
+.contact-title {
+  font-size: 2rem;
+  color: var(--neon);
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px var(--neon);
+}
+
+.contact-subtitle {
+  color: var(--muted);
+  margin-bottom: 40px;
+  font-size: 1rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--neon);
+  border-radius: 16px;
+  padding: 25px;
+  transition: 0.4s;
+  text-decoration: none;
+  color: var(--muted);
+  box-shadow: 0 0 15px rgba(0, 255, 138, 0.05);
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 20px var(--neon);
+  color: var(--neon);
+}
+
+.contact-card i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* Unique colors per platform */
+.contact-card.insta i { color: #e1306c; }
+.contact-card.whatsapp i { color: #25d366; }
+.contact-card.linkedin i { color: #0077b5; }
+.contact-card.gmail i { color: #d14836; }
 
 /* Terminal card */
 .terminal-card{
@@ -121,7 +261,6 @@ body{
 .contact{padding:18px;border-radius:10px;border:1px solid var(--card-border);background:linear-gradient(0deg, rgba(0,0,0,0.35), rgba(0,0,0,0.18))}
 .contact-list{list-style:none;padding-left:0;color:var(--muted);font-size:14px}
 .footer{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-top:1px solid var(--card-border);color:var(--muted);font-size:13px}
-
 /* Responsive */
 @media (max-width:900px){
   .hero{flex-direction:column}
@@ -130,3 +269,14 @@ body{
   .brand .sub{display:none}
   .nav{display:none}
 }
+
+
+/* Added header styles to ensure navbar colours */
+
+/* Header / Navbar styles added by assistant */
+.main-header{ display:flex; align-items:center; justify-content:space-between; padding:10px 16px; background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.35)); border-bottom:1px solid rgba(0,255,138,0.12); position:sticky; top:0; z-index:60; }
+.main-header .logo{ color:var(--neon); font-weight:700; letter-spacing:1px; font-size:1.05rem; }
+.main-header nav{ display:flex; gap:12px; align-items:center; }
+.main-header nav a{ color:var(--muted); text-decoration:none; padding:6px 10px; border-radius:8px; }
+.main-header nav a.active, .main-header nav a:hover{ color:var(--bg); background:linear-gradient(90deg,var(--neon),var(--neon-2)); box-shadow:0 6px 18px rgba(0,255,140,0.06); }
+.footer{ display:flex; align-items:center; justify-content:center; padding:12px; border-top:1px solid rgba(0,255,138,0.06); }
