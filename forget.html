@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Forgot Password | CSE SPARTANS</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="auth.js"></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="main-header">
+      <div class="logo">CSE SPARTANS</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="signup.html">Signup</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    <div class="app">
+      <h2>Reset Your Password</h2>
+
+      <form id="forgotForm" onsubmit="return handleForgot(event)" class="form-card">
+        <div class="form-row">
+          <label for="email">Registered Email</label>
+          <input id="email" name="email" type="email" required placeholder="Enter your registered email" />
+        </div>
+
+        <div class="form-row">
+          <label for="newPassword">New Password</label>
+          <input id="newPassword" name="newPassword" type="password" required placeholder="Enter new password" />
+          <small class="muted">Must include upper, lower, number, special character, 8+ chars</small>
+        </div>
+
+        <div class="form-row">
+          <label for="confirmPassword">Confirm Password</label>
+          <input id="confirmPassword" name="confirmPassword" type="password" required placeholder="Re-enter new password" />
+        </div>
+
+        <div class="form-row actions-row">
+          <button class="btn" type="submit">Reset Password</button>
+          <a href="login.html" class="btn btn-ghost">Back to Login</a>
+        </div>
+
+        <div id="forgotMsg" class="form-msg"></div>
+      </form>
+    </div>
+
+    <footer class="footer">
+      <small>© <span id="year4"></span> CSE SPARTANS</small>
+    </footer>
+
+    <script>
+      document.getElementById("year4").textContent = new Date().getFullYear();
+
+      function handleForgot(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value;
+        const pass1 = document.getElementById("newPassword").value;
+        const pass2 = document.getElementById("confirmPassword").value;
+        const msg = document.getElementById("forgotMsg");
+
+        // Email validation
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          msg.textContent = "Please enter a valid email address.";
+          msg.style.color = "red";
+          return false;
+        }
+
+        // Password strength validation
+        const strongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+        if (!strongPassword.test(pass1)) {
+          msg.textContent = "Password must be strong (upper, lower, number, special char, 8+ chars).";
+          msg.style.color = "red";
+          return false;
+        }
+
+        if (pass1 !== pass2) {
+          msg.textContent = "Passwords do not match.";
+          msg.style.color = "red";
+          return false;
+        }
+
+        // Simulate password reset
+        msg.textContent = "✅ Password reset successful. Redirecting to login...";
+        msg.style.color = "green";
+        setTimeout(() => (window.location.href = "login.html"), 2000);
+        return true;
+      }
+    </script>
+  </body>
+</html>
