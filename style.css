@@ -20,7 +20,7 @@ body{
   margin:0;
   font-family: 'Share Tech Mono', monospace;
   background: linear-gradient(180deg,#000 0%, #03110a 60%);
-  background-attachment: fixed;
+  background-attachment:fixed;
   color:var(--neon);
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
