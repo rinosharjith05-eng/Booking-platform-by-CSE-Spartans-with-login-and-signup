@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
   // year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
 
-
-
   // Terminal flicker/demo
   const term = document.getElementById('terminal');
   const lines = [
@@ -13,6 +11,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
     '> events: fetched (3 entries)',
     '> tip: press Book Now to reserve',
   ];
+  let idx=0;
+  setInterval(()=>{
+    term.textContent = lines.slice(0, (idx%lines.length)+1).join('\n');
+    idx++;
+  }, 2000);
   
 
   // Matrix animation init
