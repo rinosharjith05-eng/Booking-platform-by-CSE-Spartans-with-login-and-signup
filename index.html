@@ -8,6 +8,9 @@
     <script defer src="script.js"></script>
   </head>
   <body >
+      <!-- Matrix Canvas (background effect) -->
+  <canvas id="matrix-canvas"></canvas>
+
     <!-- Header -->
     <header class="main-header">
       <div class="logo">CSE SPARTANS</div>
@@ -28,6 +31,7 @@
         <div class="stats">
           <div><strong id="slots-left">120</strong><small>slots left</small></div>
           <div><strong id="event-count">3</strong><small>upcoming events</small></div>
+          <div><strong>500+</strong><small>registrations</small></div>
         </div>
 
         <div class="actions">
@@ -39,16 +43,26 @@
       </div class="actions">
       </div>
       </div>
+      <div class="hero-right">
+  <div class="terminal-card">
+    <div class="term-header">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <div class="term-title">booking@csespartans:~</div>
+    </div>
+    
+    <div class="term-body" id="terminal">
+      <pre>// Welcome to the CodeSapiens booking console
+> load events --status upcoming
+> run book --fast
+</pre>
+    </div>
+  </div>
+</div>
     </section>
 
-    <!-- Event Listing -->
-    <section id="events-list" class="events-section">
-      <h2> Events</h2>
-      <h4>
-- Workshop on AI & ML | Date: 05/11/2025 | Time: 08:00 am</h4>
-<h4>- Tech Talk on Cybersecurity | Date: 07/11/2025 | Time: 10:30 am</h4>
-<h4>- Hackathon: Code Sprint | Date: 09/11/2025 | Time: 10:00 am
-</h4>
+
 
 
       <div id="event-cards" class="event-cards"></div>
