@@ -31,7 +31,7 @@ body{
 #matrix-canvas{
   position:fixed;
   inset:0;
-  z-index:0;
+  z-index:-1;
   display:block;
   opacity:0.25;
   filter: blur(0.2px) saturate(1.2);
