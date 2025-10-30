@@ -52,12 +52,7 @@ body{
 .brand .logo span{color:var(--neon-2);margin-left:6px}
 .brand .sub{font-size:11px;color:var(--muted);margin-top:2px}
 
-#csetitle{
-  text-align: center;
-  padding: 0.5px;
-  justify-content: center;
-  justify-items: center;
-}
+
 .navbar{
   display: flex;
   padding: 10px;
