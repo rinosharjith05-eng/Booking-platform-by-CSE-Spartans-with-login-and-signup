@@ -26,7 +26,6 @@ body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
-
 /* Matrix canvas sits behind everything */
 #matrix-canvas{
   position:fixed;
@@ -37,8 +36,9 @@ body{
   filter: blur(0.2px) saturate(1.2);
 }
 
+
 /* App layout */
-.app{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+.app{position:relative;z-index:1;min-height:100vh;display:flex;text-align: center;flex-direction:column }
 .topbar{
   display:flex;
   justify-content:space-between;
@@ -138,43 +138,15 @@ body{
 }
 
 /*Eventpage*/
-
-/* Filters */
-.filter-card {
-  background-color: #000; /* Dark background */
+.eventpageofevents{
+  position:relative;
+  z-index:1;
+  min-height:100vh;
+  display:flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction:column;
   padding: 10px;
-  border-radius: 5px;
-}
-
-.filter-card label {
-  color: #0f0; /* Green text for labels */
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.filter-card select,
-.filter-card input[type="date"] {
-  background-color: #333; /* Slightly lighter dark for inputs */
-  color: #fff; /* White text in inputs */
-  border: 1px solid #0f0; /* Green border */
-  padding: 5px;
-  border-radius: 5px;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.filter-card button.btn {
-  background-color: #0f0; /* Green background for button */
-  color: #000; /* Black text on green button */
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.filter-card button.btn:hover {
-  background-color: #0c0; /* Slightly darker green on hover */
 }
 
 /* CONTACT PAGE */
