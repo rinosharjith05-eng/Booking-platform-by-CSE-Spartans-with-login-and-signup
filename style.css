@@ -102,6 +102,16 @@ body{
   border: 1px solid #ccc; /* Optional: for visual boundary */
   border-radius: 8px;     /* Optional: rounded corners */
 }
+/*Booking form in seperate page*/
+#separatebooking {
+  width: 80%;          /* Make it smaller than full width */
+  max-width: 600px;    /* Limit the maximum width */
+  margin: 0 auto;      /* Center the section horizontally */
+  padding: 30px;       /* Optional: add some inner space */
+  box-sizing: border-box; /* Ensure padding doesn’t increase width */
+  border: 1px solid #03FF15; /* Optional: for visual boundary */
+  border-radius: 8px;     /* Optional: rounded corners */
+}
 
 .actions{display:flex;gap:12px;margin-top:12px}
 .btn{
